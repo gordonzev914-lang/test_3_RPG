@@ -19,42 +19,46 @@ class Game:
     def __init__(self):
         pass
     
+    
+    @staticmethod
+    def show_menu():
+        while True:
+            players_choice=input("battle or exit")
+            if players_choice=="battle":
+                return True
+            elif players_choice=="exit":
+                return False
+            else:
+                print("not valed")
+                continue
+            
     def create_player(self):
         name=input("enter your name")
         player=Player(name,50,p_speed,p_power,p_armor_rating,profession)
         player.add_hp()
         player.add_power()
         print( player)
-        return self.choose_random_monster()
-    
-
+        
     def choose_random_monster(self):
         monster=random_monster
+        print(monster)
         return monster
-
-
-             
-
-        
     
-    
-
-
-    def show_menu(self):
-        player_choice=input("battle or exit?")
-        if player_choice=="battle":
-            self.create_player(self)
-        elif player_choice=="exit":
-            print( "god bey")
-        else:
-             self.show_menu(self)
-
     def start(self):
-         self.show_menu()
+        self.menu=self.show_menu()
+        if self.menu==True:
+            self.player=self.create_player()
+            self.monster=self.choose_random_monster()
+            return self.player,self.monster
+        else:
+            print("god bey")
 
 
 
-# a=Game
+
+
+a=Game()
+a.start()
 # a.show_menu(a)
 
 # monster=type_0f_monster
